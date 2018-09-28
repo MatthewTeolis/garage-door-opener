@@ -1,10 +1,18 @@
 import sys
 import RPi.GPIO as GPIO
-from config import Config
 from garage_door_opener import GarageDoorOpener
 
 
-door = sys.argv[1]
-config = Config(Config.DEFAULT_CONFIG_FILE)
-garage_door_opener = GarageDoorOpener(config, GPIO)
-garage_door_opener.open_right_door()
+def __main__(args):
+    door = args[1]
+    garage_door_opener = GarageDoorOpener(GPIO)
+
+    if door == "left":
+        garage_door_opener.open_left_door()
+    elif door == "right":
+        garage_door_opener.open_right_door()
+    elif door == "other":
+        garage_door_opener.open_other_door()
+
+
+__main__(sys.argv)

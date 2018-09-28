@@ -3,22 +3,22 @@ import time
 
 class GarageDoorOpener:
 
-    def __init__(self, config, gpio):
-        self.config = config
+    LEFT_DOOR_PIN = 22
+    RIGHT_DOOR_PIN = 27
+    OTHER_DOOR_PIN = 17
+
+    def __init__(self, gpio):
         self.gpio = gpio
         self.gpio.setmode(self.gpio.BCM)
 
     def open_left_door(self):
-        pin = self.config.get_left_door_pin()
-        self.__trigger_pin(pin)
+        self.__trigger_pin(self.LEFT_DOOR_PIN)
 
     def open_right_door(self):
-        pin = self.config.get_right_door_pin()
-        self.__trigger_pin(pin)
+        self.__trigger_pin(self.RIGHT_DOOR_PIN)
 
     def open_other_door(self):
-        pin = self.config.get_right_door_pin()
-        self.__trigger_pin(pin)
+        self.__trigger_pin(self.OTHER_DOOR_PIN)
 
     def __trigger_pin(self, pin_for_garage_door):
         gpio = self.gpio
