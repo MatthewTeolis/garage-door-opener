@@ -1,8 +1,7 @@
 import time
 
 
-class GarageDoorOpener:
-
+class GarageDoor:
     LEFT_DOOR_PIN = 22
     RIGHT_DOOR_PIN = 27
     OTHER_DOOR_PIN = 17
@@ -11,13 +10,13 @@ class GarageDoorOpener:
         self.gpio = gpio
         self.gpio.setmode(self.gpio.BCM)
 
-    def open_left_door(self):
+    def toggle_left_door(self):
         self.__trigger_pin(self.LEFT_DOOR_PIN)
 
-    def open_right_door(self):
+    def toggle_right_door(self):
         self.__trigger_pin(self.RIGHT_DOOR_PIN)
 
-    def open_other_door(self):
+    def toggle_other_door(self):
         self.__trigger_pin(self.OTHER_DOOR_PIN)
 
     def __trigger_pin(self, pin_for_garage_door):
