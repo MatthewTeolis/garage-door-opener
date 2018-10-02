@@ -8,7 +8,6 @@ class GarageDoor:
 
     def __init__(self, gpio):
         self.gpio = gpio
-        self.gpio.setmode(self.gpio.BCM)
 
     def toggle_left_door(self):
         self.__trigger_pin(self.LEFT_DOOR_PIN)
@@ -21,6 +20,7 @@ class GarageDoor:
 
     def __trigger_pin(self, pin_for_garage_door):
         gpio = self.gpio
+        gpio.setmode(self.gpio.BCM)
         gpio.setup(pin_for_garage_door, gpio.OUT)
         gpio.output(pin_for_garage_door, True)
         time.sleep(0.3)

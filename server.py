@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, Response
 import RPi.GPIO as GPIO
 from garage_door import GarageDoor
 from config import Config
@@ -19,9 +19,13 @@ def open_door(door):
 
 @app.route("/garage/toggle", methods=["POST"])
 def toggle_door():
+    print("Got request.")
     if request.headers.get("AuthKey") == config.auth_key():
         door = request.json["door"]
+        print("opening door: " + door)
         open_door(door)
+        return Response("triggered!", 200)
+    return Response("Not Authorized", 401)
 
 
-app.run(port=config.port())
+app.run(host="0.0.0.0", port=config.port())
