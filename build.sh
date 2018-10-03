@@ -1,14 +1,5 @@
 #!/usr/bin/env bash
 
-#DOCKER_IMAGE_NAME="garage-door-opener"
-#
-#if [[ "$(docker images -q ${DOCKER_IMAGE_NAME} 2> /dev/null)" != "" ]]; then
-#  echo "Docker image exists..."
-#  echo "Removing existing image..."
-#  docker image rm ${DOCKER_IMAGE_NAME}
-#  echo "Done."
-#fi
-
 if [ ! -f .config.yaml ]; then
   echo "Config file not found!"
   read -p "Enter 'authkey': " authkey
